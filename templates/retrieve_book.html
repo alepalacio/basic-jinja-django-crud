@@ -1,0 +1,27 @@
+{% extends 'home.html'%}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="container">
+
+            <h1>Detalle del libro seleccionado</h1>
+
+            <br>
+
+            <p>Titulo: <input type="text" name="title" value="{{ book.title }}" class="form-control"></p>
+            <p>Isbn: <input type="text" name="isbn" value="{{ book.isbn }}" class="form-control"></p>
+            <p>Fecha de creación: <input type="text" name="creation_date" value="{{ book.creation_date }}" class="form-control"></p>
+            <p>Editorial: <input type="text" name="editorial" value="{{ book.editorial }}" class="form-control"></p>
+
+        </div>
+
+        <br>
+
+        <a href="{{ '/list_books' }}">Volver al listado</a>
+
+    </div>
+
+
+{% endblock %}

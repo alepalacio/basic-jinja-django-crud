@@ -1,0 +1,73 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+  <div class="container">
+
+    <h1>Lista de libros</h1>
+
+    <div class="form-group mb-2 col col-lg-6">
+
+      <table class="center">
+
+        <thead>
+
+          <tr>
+            <th>Identificador único</th>
+            <th>Titulo del libro</th>
+            <th>ISBN</th>
+            <th>Fecha de creación</th>
+            <th>Páginas</th>
+            <th>Editorial</th>
+            <th>Acciones a realizar</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          {% for book in books %}
+
+          <tr>
+            
+            <td>{{ book.id }}</td>
+
+            <td>{{ book.title }}</td>
+
+            <td>{{ book.isbn }}</td>
+
+            <td>{{ book.creation_date }}</td>
+
+            <td>{{ book.pages }}</td>
+
+            <td>{{ book.editorial }}</td>
+
+            <td>
+
+              <a href="{{ '/retrieve_book'}}/{{ book.id }}">Ver</a>
+
+              <a href="{{ '/update_book'}}/{{ book.id }}">Actualizar</a>
+
+              <a href="{{ '/delete_book' }}/{{ book.id }}">Eliminar</a>
+              
+            </td>
+
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+
+      </table>
+
+      <br>
+
+      <a href="{{ '/create_book' }}" class="button">Crear un libro</a>
+
+
+    </div>
+
+  </div>
+
+{% endblock %}

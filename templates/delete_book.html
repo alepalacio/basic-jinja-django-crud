@@ -1,0 +1,24 @@
+{% extends 'home.html'%}
+
+{% block content %}
+
+    <div class="container">
+
+        <h3>Eliminar libro de título: {{ book.title }}</h3>
+
+        <p>¿Quiere proceder con la eliminación de este libro?</p>
+    
+        <form method="post">
+    
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    
+            <button type="submit">Sí, deseo eliminar</button>
+    
+            <a href="{{ '/list_books' }}">Cancelar</a>
+    
+        </form>
+
+
+    </div>
+
+{% endblock %}

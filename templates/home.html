@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Libros y autores</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-reboot.css">
+</head>
+<style>
+    h1 {
+        text-align: center;
+    }
+    h2 {
+        text-align: center;
+    }
+    div {
+        text-align: center;
+    }
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    table, th, td {
+        border: 1px solid black;
+      }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 4px;
+        border: 2px solid #007bff;
+    }
+      
+    .button:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+      
+</style>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
