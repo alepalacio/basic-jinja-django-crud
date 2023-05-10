@@ -1,4 +1,3 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Book
@@ -6,12 +5,12 @@ from .models import Book
 from .forms import BookForm
 
 
-# Vista para renderizar plantillas.
+# Vista listar los objetos.
 def list_books(request):
 
     try:
 
-        books = Book.objects.all()
+        books = Book.objects.all().order_by('-creation_date')
 
         context = {
             'books': books
@@ -70,15 +69,11 @@ def update_book(request, book_id):
 
         if request.method == 'POST':
 
-            title = request.POST['title']
-            isbn = request.POST['isbn']
-            creation_date = request.POST['creation_date']
-            editorial = request.POST['editorial']
+            book.title = request.POST['title']
+            book.isbn = int(request.POST['isbn'])
+            book.creation_date = request.POST['creation_date']
+            book.editorial = request.POST['editorial']
 
-            book.title = title
-            book.isbn = isbn
-            book.creation_date = creation_date
-            book.editorial = editorial
             book.save()
 
         return render(request, "update_books.html", context)
@@ -90,11 +85,11 @@ def update_book(request, book_id):
 
 def delete_book(request, book_id):
 
-    # Obtener la instancia del objeto
+    # Obtener la instancia del objeto y eliminarla.
 
     try:
 
-        book = get_object_or_404(Book, id=book_id)
+        book = Book.objects.get(id=book_id)
 
         if request.method == 'POST':
             
@@ -109,12 +104,9 @@ def delete_book(request, book_id):
 
         return render(request, 'delete_book.html', context)
     
-    except Exception as e:
+    except Exception:
 
-        context = {
-            'error': e
-        }
-        return render(request, 'errors.html', context)
+        return render(request, 'errors.html')
 
 
 def delete_ok(request):
@@ -126,7 +118,7 @@ def retrieve_book(request, book_id):
 
     try:
 
-        book = get_object_or_404(Book, id=book_id)
+        book = Book.objects.get(id=book_id)
 
         context = {
             'book': book
